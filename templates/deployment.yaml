@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-json-logs
+spec:
+  replicas: {{ .Values.application.replicaCount }}
+  selector:
+    matchLabels:
+      app: spring-boot-json-logs
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: spring-boot-json-logs
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: spring-boot-json-logs
+          image: {{ .Values.application.image }}
+          env:
+            - name: DOCKER
+              value: "true"
+          ports:
+            - name: application
+              containerPort: {{ default 8080 .Values.application.port }}
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: {{ default 8080 .Values.application.port }}
+            initialDelaySeconds: 60
+            timeoutSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /
+              port: {{ default 8080 .Values.application.port }}
+            initialDelaySeconds: 60
+            timeoutSeconds: 15

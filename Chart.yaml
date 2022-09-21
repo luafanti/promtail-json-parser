@@ -1,0 +1,18 @@
+apiVersion: v2
+appVersion: "0.0.1"
+dependencies:
+  - name: loki-stack
+    repository: https://grafana.github.io/helm-charts
+    version: 2.8.2
+description: Loki stack with Promtail configured to parse JSON logs.
+keywords:
+  - loki
+  - promtail
+  - json-parser
+maintainers:
+  - email: luafanti@gmail.com
+    name: Artur Bartosik
+name: promtail-json-parser
+sources:
+  - //TODO
+version: 0.0.1

@@ -1,0 +1,8 @@
+/.idea/*
+*.iml
+.vscode
+.DS_Store
+/temp/*
+kubeconfig
+*.kubeconfig
+
